@@ -1,6 +1,6 @@
 [package]
 name = "lepcc-ffi"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2024"
 description = "Safe Rust bindings for the Esri LEPCC point-cloud compression library (XYZ, RGB, Intensity, FlagBytes)"
 license = "Apache-2.0"
