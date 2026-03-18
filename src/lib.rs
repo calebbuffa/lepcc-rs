@@ -1,6 +1,8 @@
 //! Safe Rust bindings for the [Esri LEPCC](https://github.com/Esri/lepcc)
 //! point-cloud compression library.
 //!
+//! Note that `Context` is **not** `Send + Sync` — create one per thread / per decode call.
+//!
 //! LEPCC (Limited Error Point Cloud Compression) is the codec used by the I3S
 //! PointCloud layer type to compress:
 //!
@@ -12,7 +14,7 @@
 //! # Usage
 //!
 //! ```no_run
-//! use lepcc::Context;
+//! use lepcc_ffi::Context;
 //!
 //! // Fetch LEPCC blob
 //! let blob: Vec<u8> = todo!("fetch lepcc-xyz blob from I3S");

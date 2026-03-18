@@ -7,7 +7,7 @@ LEPCC is the codec behind I3S PointCloud layers. When you fetch a geometry or at
 ## Usage
 
 ```rust
-use lepcc::Context;
+use lepcc_ffi::Context;
 
 // XYZ positions
 let ctx = Context::new();
