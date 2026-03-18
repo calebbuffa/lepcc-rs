@@ -7,7 +7,7 @@ license = "Apache-2.0"
 repository = "https://github.com/calebbuffa/lepcc-rs"
 readme = "README.md"
 keywords = ["lepcc", "pointcloud", "lidar", "i3s", "compression"]
-categories = ["compression", "encoding", "science::geo"]
+categories = ["compression", "encoding"]
 links = "lepcc"
 include = [
     "build.rs",

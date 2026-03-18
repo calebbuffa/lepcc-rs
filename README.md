@@ -1,19 +1,10 @@
-# lepcc
+# lepcc-ffi
 
 Rust bindings for [Esri's LEPCC](https://github.com/Esri/lepcc) (Limited Error Point Cloud Compression) library.
 
 LEPCC is the codec behind I3S PointCloud layers. When you fetch a geometry or attribute blob from a `lepcc-xyz`, `lepcc-rgb`, or `lepcc-intensity` resource, this is what decodes it.
 
 ## Usage
-
-Add to your `Cargo.toml`:
-
-```toml
-[dependencies]
-lepcc = { git = "https://github.com/calebbuffa/lepcc-rs" }
-```
-
-Then decode blobs you've fetched from an I3S service:
 
 ```rust
 use lepcc::Context;
