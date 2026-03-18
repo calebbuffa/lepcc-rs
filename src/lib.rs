@@ -37,8 +37,6 @@ pub enum LepccError {
 
 pub type Result<T> = std::result::Result<T, LepccError>;
 
-// ─── Internal helpers ────────────────────────────────────────────────────────
-
 fn buf_len(data: &[u8]) -> Result<c_int> {
     c_int::try_from(data.len()).map_err(|_| LepccError::BufferTooLarge)
 }
@@ -50,8 +48,6 @@ fn check(status: u32) -> Result<()> {
         Err(LepccError::Status(status))
     }
 }
-
-// ─── Context ─────────────────────────────────────────────────────────────────
 
 /// RAII wrapper around a `lepcc_ContextHdl`.
 ///
@@ -74,8 +70,6 @@ impl Context {
         Self { hdl }
     }
 
-    // ── Blob inspection ──────────────────────────────────────────────────────
-
     /// Identify the type and byte-length of the next blob in `data`.
     ///
     /// Returns `(blob_type, blob_size_in_bytes)`.
@@ -94,8 +88,6 @@ impl Context {
         check(status)?;
         Ok((blob_type, blob_size))
     }
-
-    // ── XYZ ─────────────────────────────────────────────────────────────────
 
     /// Decode a `lepcc-xyz` blob into a vector of `[x, y, z]` coordinates.
     pub fn decode_xyz(&self, data: &[u8]) -> Result<Vec<[f64; 3]>> {
@@ -122,8 +114,6 @@ impl Context {
         Ok(out)
     }
 
-    // ── RGB ──────────────────────────────────────────────────────────────────
-
     /// Decode a `lepcc-rgb` blob into a vector of `[r, g, b]` byte triples.
     pub fn decode_rgb(&self, data: &[u8]) -> Result<Vec<[u8; 3]>> {
         let len = buf_len(data)?;
@@ -148,8 +138,6 @@ impl Context {
         Ok(out)
     }
 
-    // ── Intensity ────────────────────────────────────────────────────────────
-
     /// Decode a `lepcc-intensity` blob into a vector of `u16` intensity values.
     pub fn decode_intensity(&self, data: &[u8]) -> Result<Vec<u16>> {
         let len = buf_len(data)?;
@@ -169,8 +157,6 @@ impl Context {
         Ok(out)
     }
 
-    // ── FlagBytes ────────────────────────────────────────────────────────────
-
     /// Decode a `lepcc-flagbytes` blob into a vector of classification bytes.
     pub fn decode_flag_bytes(&self, data: &[u8]) -> Result<Vec<u8>> {
         let len = buf_len(data)?;
@@ -189,8 +175,6 @@ impl Context {
         check(status)?;
         Ok(out)
     }
-
-    // ── Encode (XYZ) ─────────────────────────────────────────────────────────
 
     /// Encode XYZ coordinates into a LEPCC blob.
     ///
@@ -287,8 +271,6 @@ impl Drop for Context {
         unsafe { sys::lepcc_deleteContext(&mut self.hdl) };
     }
 }
-
-// ─── Tests ───────────────────────────────────────────────────────────────────
 
 #[cfg(test)]
 mod tests {
@@ -391,8 +373,6 @@ mod tests {
         // blob_type 0 = XYZ (indexed in encounter order: 0=XYZ, 1=RGB, 2=Intensity)
         assert_eq!(blob_type, 0, "unexpected blob type {blob_type}");
     }
-
-    // ── Integration tests against the official Esri test data ────────────────
 
     /// Paths to the test files bundled under `extern/lepcc/testData/`.
     const SLPK: &str = concat!(

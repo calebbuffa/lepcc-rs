@@ -19,11 +19,9 @@ pub type lepcc_status = c_uint;
 pub type lepcc_blobType = c_uint;
 
 unsafe extern "C" {
-    // ── Context lifecycle ────────────────────────────────────────────────────
     pub fn lepcc_createContext() -> lepcc_ContextHdl;
     pub fn lepcc_deleteContext(ctx: *mut lepcc_ContextHdl);
 
-    // ── Blob inspection ──────────────────────────────────────────────────────
     /// Returns the number of bytes needed to call `lepcc_getBlobInfo`.
     pub fn lepcc_getBlobInfoSize() -> c_int;
 
@@ -35,7 +33,6 @@ unsafe extern "C" {
         blob_size: *mut c_uint,
     ) -> lepcc_status;
 
-    // ── Point counts ─────────────────────────────────────────────────────────
     pub fn lepcc_getPointCount(
         ctx: lepcc_ContextHdl,
         packed: *const u8,
@@ -64,7 +61,6 @@ unsafe extern "C" {
         count_out: *mut c_uint,
     ) -> lepcc_status;
 
-    // ── Decoders ─────────────────────────────────────────────────────────────
     /// Decode XYZ coordinates.  `xyz_buf_out` must hold `n_pts * 3` doubles.
     pub fn lepcc_decodeXYZ(
         ctx: lepcc_ContextHdl,
@@ -101,7 +97,6 @@ unsafe extern "C" {
         flag_bytes_buf_out: *mut u8,
     ) -> lepcc_status;
 
-    // ── Encoders ─────────────────────────────────────────────────────────────
     pub fn lepcc_computeCompressedSizeXYZ(
         ctx: lepcc_ContextHdl,
         n_pts: c_uint,
