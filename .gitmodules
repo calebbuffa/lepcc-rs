@@ -1,0 +1,3 @@
+[submodule "extern/lepcc"]
+	path = extern/lepcc
+	url = https://github.com/Esri/lepcc.git

@@ -1,0 +1,29 @@
+[package]
+name = "lepcc"
+version = "0.1.0"
+edition = "2024"
+description = "Safe Rust bindings for the Esri LEPCC point-cloud compression library (XYZ, RGB, Intensity, FlagBytes)"
+license = "Apache-2.0"
+repository = "https://github.com/calebbuffa/lepcc-rs"
+readme = "README.md"
+keywords = ["lepcc", "pointcloud", "lidar", "i3s", "compression"]
+categories = ["compression", "encoding", "science::geo"]
+links = "lepcc"
+include = [
+    "build.rs",
+    "src/**",
+    "extern/lepcc/src/**",
+    "extern/lepcc/LICENSE.TXT",
+    "extern/lepcc/NOTICE.TXT",
+    "LICENSE",
+    "README.md",
+]
+
+[dependencies]
+thiserror = "2"
+
+[build-dependencies]
+cc = "1"
+
+[dev-dependencies]
+# nothing extra needed for unit tests
