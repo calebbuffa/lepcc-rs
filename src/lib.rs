@@ -14,13 +14,22 @@
 //! ```no_run
 //! use lepcc::Context;
 //!
+//! // Fetch LEPCC blob
 //! let blob: Vec<u8> = todo!("fetch lepcc-xyz blob from I3S");
+//!
+//! // Create a LEPCC context
 //! let ctx = Context::new();
+//!
+//! // Get blob info
+//! let (blob_type, blob_size) = ctx.blob_info(&blob).unwrap();
+//!
+//! // Decode blobs
 //! let points: Vec<[f64; 3]> = ctx.decode_xyz(&blob).unwrap();
 //! let colors: Vec<[u8; 3]> = ctx.decode_rgb(&blob).unwrap();
 //! let intensity: Vec<u16> = ctx.decode_intensity(&blob).unwrap();
 //! let flags: Vec<u8> = ctx.decode_flag_bytes(&blob).unwrap();
-//! let (blob_type, blob_size) = ctx.blob_info(&blob).unwrap();
+//!
+//! // Encode
 //! let xyz_blob = ctx.encode_xyz(&points, 0.001).unwrap();
 //! let rgb_blob = ctx.encode_rgb(&colors).unwrap();
 //! let intensity_blob = ctx.encode_intensity(&intensity).unwrap();
