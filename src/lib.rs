@@ -16,8 +16,15 @@
 //!
 //! let blob: Vec<u8> = todo!("fetch lepcc-xyz blob from I3S");
 //! let ctx = Context::new();
-//! let points = ctx.decode_xyz(&blob).unwrap();
-//! // points: Vec<[f64; 3]>
+//! let points: Vec<[f64; 3]> = ctx.decode_xyz(&blob).unwrap();
+//! let colors: Vec<[u8; 3]> = ctx.decode_rgb(&blob).unwrap();
+//! let intensity: Vec<u16> = ctx.decode_intensity(&blob).unwrap();
+//! let flags: Vec<u8> = ctx.decode_flag_bytes(&blob).unwrap();
+//! let (blob_type, blob_size) = ctx.blob_info(&blob).unwrap();
+//! let xyz_blob = ctx.encode_xyz(&points, 0.001).unwrap();
+//! let rgb_blob = ctx.encode_rgb(&colors).unwrap();
+//! let intensity_blob = ctx.encode_intensity(&intensity).unwrap();
+//! let flag_bytes_blob = ctx.encode_flag_bytes(&flags).unwrap();
 //! ```
 
 mod sys;
